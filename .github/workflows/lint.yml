@@ -1,15 +1,13 @@
 name: Auto Format with ESLint
 run-name: ESLint Formatter
 on: [push, pull_request]
-defaults:
-  run:
-    working-directory: ../Simple-HTTP-Assignment-Start
+
 jobs:
   format:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Starting the github action"
-      - run: npm install
+      - run: npm ci
       - run: echo "Successfully installed dependencies through npm"
       - run: npm run pretest
       - run: echo "Successfully ran the pretest script"
