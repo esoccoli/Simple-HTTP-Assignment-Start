@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Starting the github action"
-      - run: npm ci
+      - run: ls -la
+      - run: npm install
       - run: echo "Successfully installed dependencies through npm"
       - run: npm run pretest
       - run: echo "Successfully ran the pretest script"
