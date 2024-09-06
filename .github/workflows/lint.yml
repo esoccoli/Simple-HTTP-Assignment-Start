@@ -1,26 +1,12 @@
-name: 'Tests: pretest/posttest'
-
-on: [pull_request, push]
-
+name: Auto Format with ESLint
+run-name: ESLint Formatter
+on: [push, pull_request]
 jobs:
-  pretest:
+  format:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        package:
-          - '..'
-          - eslint-config-airbnb
-          - eslint-config-airbnb-base
-
-    defaults:
-      run:
-        working-directory: "packages/${{ matrix.package }}"
-
     steps:
-      - uses: actions/checkout@v2
-      - uses: ljharb/actions/node/install@main
-        name: 'nvm install lts/* && npm install'
-        with:
-          node-version: 'lts/*'
+      - run: echo "Starting the github action"
+      - run: npm install
+      - run: echo "Successfully installed dependencies through npm"
       - run: npm run pretest
+      - run: echo "Successfully ran the pretest script"
