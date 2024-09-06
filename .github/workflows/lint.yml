@@ -1,36 +1,26 @@
-name: Lint
+name: 'Tests: pretest/posttest'
 
-on:
-  # Trigger the workflow on push or pull request,
-  # but only for the main branch
-  push:
-    branches:
-      - main
-      - master
-  pull_request:
-    branches:
-      - main
-      - master
+on: [pull_request, push]
 
 jobs:
-  run-linters:
-    name: Run linters
+  pretest:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - '..'
+          - eslint-config-airbnb
+          - eslint-config-airbnb-base
+
+    defaults:
+      run:
+        working-directory: "packages/${{ matrix.package }}"
 
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: ljharb/actions/node/install@main
+        name: 'nvm install lts/* && npm install'
         with:
-          node-version: 12
-
-      # ESLint and Prettier must be in `package.json`
-      - name: Install Node.js dependencies
-        run: npm ci
-
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          eslint: true
+          node-version: 'lts/*'
+      - run: npm run pretest
