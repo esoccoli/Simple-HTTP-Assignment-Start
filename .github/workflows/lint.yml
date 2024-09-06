@@ -3,7 +3,7 @@ run-name: ESLint Formatter
 on: [push, pull_request]
 defaults:
   run:
-    working-directory: ~/Simple-HTTP-Assignment-Start
+    working-directory: ../Simple-HTTP-Assignment-Start
 jobs:
   format:
     runs-on: ubuntu-latest
