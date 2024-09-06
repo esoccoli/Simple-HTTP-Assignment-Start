@@ -8,7 +8,7 @@ jobs:
     steps:
       - run: echo "Starting the github action"
       - run: ls -la
-      - run: npm install
+      - run: npm init -y && npm install
       - run: echo "Successfully installed dependencies through npm"
       - run: npm run pretest
       - run: echo "Successfully ran the pretest script"
