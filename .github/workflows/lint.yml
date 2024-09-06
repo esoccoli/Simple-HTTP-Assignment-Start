@@ -3,12 +3,14 @@ run-name: ESLint Formatter
 on: [push, pull_request]
 
 jobs:
-  format:
+  setup-npm:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Starting the github action"
-      - run: ls -la
       - run: npm init -y && npm install
-      - run: echo "Successfully installed dependencies through npm"
+      - run: npm install --save-dev eslint eslint-config-airbnb eslint-plugin-import
+      - run: echo "Successfully set up npm project"
+  lint-format:
+    runs-on: ubuntu-latest
+    steps:
       - run: npm run pretest
       - run: echo "Successfully ran the pretest script"
