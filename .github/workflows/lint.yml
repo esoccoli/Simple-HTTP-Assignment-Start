@@ -6,8 +6,7 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-      - run: npm init -y && npm install
-      - run: npm install --save-dev eslint eslint-config-airbnb eslint-plugin-import
+      - run: npm install
       - run: echo "Successfully set up npm project"
       - run: npm run pretest
       - run: echo "Successfully ran the pretest script"
