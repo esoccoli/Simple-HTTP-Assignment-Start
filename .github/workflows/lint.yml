@@ -9,4 +9,5 @@ jobs:
       - run: npm install
       - run: echo "Successfully installed dependencies through npm"
       - run: npm run pretest
+        working-directory: ./src
       - run: echo "Successfully ran the pretest script"
